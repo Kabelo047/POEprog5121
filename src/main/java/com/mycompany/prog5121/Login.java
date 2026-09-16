@@ -1,0 +1,67 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.prog5121;
+
+/**
+ *
+ * @author Student
+ */
+public class Login {
+
+    private String username;
+    private String password;
+    private String cellPhone;
+
+    // Username validation
+    public boolean checkUserName(String username) {
+        return username.contains("_") && username.length() <= 5;
+    }
+
+    // Password validation
+    public boolean checkPasswordComplexity(String password) {
+        return password.matches("^(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}$");
+    }
+
+    // South African phone validation
+    public boolean checkCellPhoneNumber(String number) {
+        return number.matches("^\\+27\\d{9}$");
+    }
+
+    // Registration
+    public String registerUser(String username, String password, String number) {
+
+        if (!checkUserName(username)) {
+            return "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than five characters in length.";
+        }
+
+        if (!checkPasswordComplexity(password)) {
+            return "Password is not correctly formatted, please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
+        }
+
+        if (!checkCellPhoneNumber(number)) {
+            return "Cell phone number incorrectly formatted or does not contain an international code, please correct the number and try again.";
+        }
+
+        this.username = username;
+        this.password = password;
+        this.cellPhone = number;
+
+        return "User has been registered successfully.";
+    }
+
+    // Login
+    public boolean loginUser(String username, String password) {
+        return this.username.equals(username) && this.password.equals(password);
+    }
+
+    // Login message
+    public String returnLoginStatus(boolean status, String firstName, String lastName) {
+        if (status) {
+            return "Welcome " + firstName + ", " + lastName + ". It is great to see you again.";
+        } else {
+            return "Username or password incorrect, please try again.";
+        }
+    }
+}
