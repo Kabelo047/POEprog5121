@@ -10,9 +10,9 @@ package com.mycompany.prog5121;
  */
 public class Login {
 
-    private String username;
-    private String password;
-    private String cellPhone;
+     String username;
+     String password;
+     String cellPhone;
 
     // Username validation
     public boolean checkUserName(String username) {
